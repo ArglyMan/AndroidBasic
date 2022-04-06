@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -62,6 +63,10 @@ public class DetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_detail, container, false);
+
+        TextView text = view.findViewById(R.id.textView2);
+        String string = getArguments().getString("NAME");
+        text.setText(string);
 
         view.findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
             @Override

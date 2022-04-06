@@ -7,10 +7,13 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -70,8 +73,20 @@ public class HomeFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                TextView text = getView().findViewById(R.id.editTextTextPersonName);  //GetView()可以，GetActivity()也可以？？？
+                String string = text.getText().toString();
+                if(TextUtils.isEmpty(string))
+                {
+                    Toast.makeText(getContext(), "Name is empty !", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                Bundle bundle = new Bundle();
+                bundle.putString("NAME", string);
+
                 NavController controller = Navigation.findNavController(view);
-                controller.navigate(R.id.action_homeFragment_to_detailFragment);
+                controller.navigate(R.id.action_homeFragment_to_detailFragment, bundle);
             }
         });
 
